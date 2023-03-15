@@ -63,11 +63,13 @@ class Cache:
         ttl: T_TTL = 0,
         timer: t.Callable[[], T_TTL] = time.time,
         default: t.Any = None,
+        eviction_callback: t.Optional[t.Callable[t.Any, t.Any]] = None
     ):
         self.maxsize = maxsize
         self.ttl = ttl
         self.timer = timer
         self.default = default
+        self.eviction_callback = eviction_callback
 
         self.setup()
         self.configure(maxsize=maxsize, ttl=ttl, timer=timer, default=default)
